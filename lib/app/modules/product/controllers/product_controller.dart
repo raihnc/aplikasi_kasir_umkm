@@ -62,6 +62,7 @@ class ProductController extends GetxController {
   }
 
   void _loadSampleProducts() {
+    isLoading.value = false;
     products.assignAll(const [
       Product(
         id: 'p-01',

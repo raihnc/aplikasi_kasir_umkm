@@ -164,39 +164,48 @@ class _TrendCard extends StatelessWidget {
     return Card(
       child: Padding(
         padding: const EdgeInsets.all(20),
-        child: Obx(
-          () => Column(
+        child: Obx(() {
+          final maxValue = controller.trend.fold(
+            0,
+            (max, value) => value > max ? value : max,
+          );
+
+          return Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               const Text('TREN PENJUALAN', style: AppTheme.labelCaps),
               const SizedBox(height: 24),
               SizedBox(
                 height: 180,
-                child: Row(
-                  crossAxisAlignment: CrossAxisAlignment.end,
-                  spacing: 10,
-                  children: [
-                    for (final value in controller.trend)
-                      Expanded(
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.end,
-                          children: [
-                            Container(
-                              height: 40 + value.toDouble() * .8,
-                              decoration: BoxDecoration(
-                                color: AppColors.primary.withValues(alpha: .82),
-                                borderRadius: BorderRadius.circular(8),
+                child: maxValue == 0
+                    ? const Center(child: Text('Belum ada data tren'))
+                    : Row(
+                        crossAxisAlignment: CrossAxisAlignment.end,
+                        spacing: 10,
+                        children: [
+                          for (final value in controller.trend)
+                            Expanded(
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.end,
+                                children: [
+                                  Container(
+                                    height: 24 + (value / maxValue) * 132,
+                                    decoration: BoxDecoration(
+                                      color: AppColors.primary.withValues(
+                                        alpha: .82,
+                                      ),
+                                      borderRadius: BorderRadius.circular(8),
+                                    ),
+                                  ),
+                                ],
                               ),
                             ),
-                          ],
-                        ),
+                        ],
                       ),
-                  ],
-                ),
               ),
             ],
-          ),
-        ),
+          );
+        }),
       ),
     );
   }

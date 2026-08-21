@@ -101,6 +101,7 @@ class HomeController extends GetxController {
   }
 
   void _loadSampleDashboard() {
+    isLoading.value = false;
     lowStockProducts.assignAll([
       const LowStockProduct(
         id: 'p-01',
