@@ -114,7 +114,7 @@ class _PurchaseOrderTab extends StatelessWidget {
       () => ListView.separated(
         padding: const EdgeInsets.all(20),
         itemCount: controller.purchaseOrders.length,
-        separatorBuilder: (context, index) => const SizedBox(height: 12),
+        separatorBuilder: (_, __) => const SizedBox(height: 12),
         itemBuilder: (context, index) {
           final order = controller.purchaseOrders[index];
           return Card(
@@ -155,7 +155,7 @@ class _MovementTab extends StatelessWidget {
       () => ListView.separated(
         padding: const EdgeInsets.all(20),
         itemCount: controller.stockMovements.length,
-        separatorBuilder: (context, index) => const SizedBox(height: 12),
+        separatorBuilder: (_, __) => const SizedBox(height: 12),
         itemBuilder: (context, index) {
           final movement = controller.stockMovements[index];
           return Card(
@@ -210,7 +210,7 @@ class _SupplierTab extends StatelessWidget {
         () => ListView.separated(
           padding: const EdgeInsets.all(20),
           itemCount: controller.suppliers.length,
-          separatorBuilder: (context, index) => const SizedBox(height: 12),
+          separatorBuilder: (_, __) => const SizedBox(height: 12),
           itemBuilder: (context, index) {
             final supplier = controller.suppliers[index];
             return Card(
